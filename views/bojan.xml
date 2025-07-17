@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="bojanova_aplikacija_form" model="ir.ui.view">
+            <field name="name">bojanova.aplikacija.form</field>
+            <field name="model">bojanova.aplikacija</field>
+            <field name="arch" type="xml">
+                <form string="Bojanov APP">
+                    <sheet>
+                        <group>
+                            <field name="slika" widget="image" class="oe_avatar"/>
+                            <field name="ime"/>
+                            <field name="prezime"/>
+                            <field name="broj_mob" placeholder="065000000"/>
+                            <field name="broj_fix" placeholder="051000000"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="bojanova_aplikacija_tree" model="ir.ui.view">
+            <field name="name">bojanova.aplikacija.tree</field>
+            <field name="model">bojanova.aplikacija</field>
+            <field name="arch" type="xml">
+                <tree string="Bojanov APP">
+                    <field name="ime"/>
+                    <field name="prezime"/>
+                    <field name="broj_mob"/>
+                    <field name="broj_fix"/>
+                </tree>
+            </field>
+        </record>
+        <record id="bojanova_aplikacija_kanban" model="ir.ui.view">
+            <field name="name">bojanova.aplikacija.kanban</field>
+            <field name="model">bojanova.aplikacija</field>
+         <field name="arch" type="xml">
+            <kanban>
+           <field name="ime"/>
+           <field name="broj_mob"/>
+         <templates>
+         <t t-name="kanban-box">
+            <div class="oe_kanban_global_click">
+                <div class="oe_kanban_details">
+                    <strong>
+                        <field name="ime"/>
+                    </strong>
+                    <div name="tags"/>
+                    <ul>
+                        <li>Broj mob.: <field name="broj_mob"></field></li>
+                    </ul>
+                    <div name="tags"/>
+                </div>
+            </div>
+         </t>
+         </templates>
+         </kanban>
+         </field>
+        </record>
+        <record id="bojan_menu_action" model="ir.actions.act_window">
+            <field name="name">Bojanov Imenik</field>
+            <field name="res_model">bojanova.aplikacija</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Kreirate prvi unos u Bojanovu aplikaciju.
+              </p>
+            </field>
+        </record>
+        <menuitem
+                id="bojan_app"
+                name="Bojanov Imenik"
+                sequence="0"/>
+
+        <menuitem action="bojan_menu_action"
+                    id="bojan_menu" name="Bojanov Imenik"
+                    parent="bojan_app" sequence="1"/>
+    </data>
+</odoo>
